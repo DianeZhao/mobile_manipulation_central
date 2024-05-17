@@ -6,6 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RobotModel1
+        - /RobotModel1/Status1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 839
   - Class: rviz/Selection
@@ -226,12 +230,78 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Filter (blacklist): ""
       Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        arch_link:
+          Value: false
+        balanced_object_collision_link:
+          Value: false
+        base_collision_link:
+          Value: false
+        base_link:
+          Value: false
+        chassis_link:
+          Value: false
+        dummy_base_link:
+          Value: false
+        forearm_collision_sphere_link1:
+          Value: false
+        forearm_collision_sphere_link2:
+          Value: false
+        front_cover_link:
+          Value: false
+        front_lights_link:
+          Value: false
+        ft_sensor:
+          Value: false
+        gripped_object:
+          Value: true
+        gripper:
+          Value: true
+        left_side_cover_link:
+          Value: false
+        rear_cover_link:
+          Value: false
+        rear_lights_link:
+          Value: false
+        right_side_cover_link:
+          Value: false
+        shoulder_collision_link:
+          Value: false
+        top_link:
+          Value: false
+        ur10_arm_base:
+          Value: false
+        ur10_arm_base_link:
+          Value: false
+        ur10_arm_base_link_inertia:
+          Value: false
+        ur10_arm_flange:
+          Value: false
+        ur10_arm_forearm_link:
+          Value: false
+        ur10_arm_shoulder_link:
+          Value: false
+        ur10_arm_tool0:
+          Value: false
+        ur10_arm_upper_arm_link:
+          Value: false
+        ur10_arm_wrist_1_link:
+          Value: false
+        ur10_arm_wrist_2_link:
+          Value: false
+        ur10_arm_wrist_3_link:
+          Value: false
+        visual_balance_link:
+          Value: false
+        wrist1_collision_link:
+          Value: false
+        wrist3_collision_link:
+          Value: false
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -239,9 +309,57 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_link:
+          base_collision_link:
+            {}
+          dummy_base_link:
+            chassis_link:
+              front_cover_link:
+                {}
+              front_lights_link:
+                {}
+              left_side_cover_link:
+                {}
+              rear_cover_link:
+                {}
+              rear_lights_link:
+                {}
+              right_side_cover_link:
+                {}
+              top_link:
+                arch_link:
+                  ur10_arm_base_link:
+                    ur10_arm_base:
+                      {}
+                    ur10_arm_base_link_inertia:
+                      ur10_arm_shoulder_link:
+                        ur10_arm_upper_arm_link:
+                          shoulder_collision_link:
+                            {}
+                          ur10_arm_forearm_link:
+                            forearm_collision_sphere_link1:
+                              {}
+                            forearm_collision_sphere_link2:
+                              {}
+                            ur10_arm_wrist_1_link:
+                              ur10_arm_wrist_2_link:
+                                ur10_arm_wrist_3_link:
+                                  ur10_arm_flange:
+                                    ur10_arm_tool0:
+                                      ft_sensor:
+                                        {}
+                                      gripper:
+                                        gripped_object:
+                                          balanced_object_collision_link:
+                                            {}
+                                          visual_balance_link:
+                                            {}
+                                  wrist3_collision_link:
+                                    {}
+                              wrist1_collision_link:
+                                {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -298,7 +416,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.725888967514038
+      Distance: 2.4309723377227783
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -306,17 +424,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.6676130890846252
-        Y: -0.1976919025182724
-        Z: 0.7349965572357178
+        X: 0.21749690175056458
+        Y: -0.22527927160263062
+        Z: 0.6942174434661865
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.2153983861207962
+      Pitch: 0.5303981304168701
       Target Frame: <Fixed Frame>
-      Yaw: 4.038575649261475
+      Yaw: 1.1153943538665771
     Saved: ~
 Window Geometry:
   Displays:
