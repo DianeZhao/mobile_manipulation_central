@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="robot_id" default="" />
+    <arg name="thing_real_urdf" default="true" />
+    <!-- <arg name="load_gripper" default="true" /> -->
+    
+
+    <param name="robot_description" textfile='$(find mobile_manipulation_central)/urdf/compiled/thing_pyb.urdf'/>
+            <!-- robot_id:=$(arg robot_id)
+            thing_real_urdf:=$(arg thing_real_urdf)"/> -->
+
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+   
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_manipulation_central)/config/rviz/config.rviz" required="true"/>
+</launch>
