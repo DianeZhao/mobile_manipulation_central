@@ -21,6 +21,18 @@ UR10_JOINT_NAMES = [
 # feedback messages, which don't guarantee order
 UR10_JOINT_INDEX_MAP = {name: index for index, name in enumerate(UR10_JOINT_NAMES)}
 
+KINOVA_JOINT_NAMES = [
+    "joint_1",
+    "joint_2",
+    "joint_3",
+    "joint_4",
+    "joint_5",
+    "joint_6"
+]
+
+# maps joint names to the indices they are expected to have used to re-order
+# feedback messages, which don't guarantee order
+KINOVA_JOINT_INDEX_MAP = {name: index for index, name in enumerate(KINOVA_JOINT_NAMES)}
 
 def msg_time(msg):
     """Extract message timestamp as float in seconds."""

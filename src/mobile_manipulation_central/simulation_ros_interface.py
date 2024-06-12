@@ -8,6 +8,8 @@ from sensor_msgs.msg import JointState
 
 from mobile_manipulation_central.ros_utils import UR10_JOINT_NAMES
 
+from mobile_manipulation_central.ros_utils import KINOVA_JOINT_NAMES
+
 
 class SimulatedViconObjectInterface:
     """Simulation of the Vicon ROS end point for a detected object.
@@ -132,6 +134,69 @@ class SimulatedMobileManipulatorROSInterface:
     def __init__(self):
         self.arm = SimulatedUR10ROSInterface()
         self.base = SimulatedRidgebackROSInterface()
+
+        self.nq = self.arm.nq + self.base.nq
+        self.nv = self.arm.nv + self.base.nv
+
+    @property
+    def cmd_vel(self):
+        return np.concatenate((self.base.cmd_vel, self.arm.cmd_vel))
+
+    def ready(self):
+        return self.base.ready() and self.arm.ready()
+
+    def publish_feedback(self, t, q, v):
+        assert q.shape == (self.nq,)
+        assert v.shape == (self.nv,)
+
+        self.base.publish_feedback(t=t, q=q[: self.base.nq], v=v[: self.base.nv])
+        self.arm.publish_feedback(t=t, q=q[self.base.nq :], v=v[self.base.nq :])
+
+    def publish_time(self, t):
+        """Publish (simulation) time."""
+        # arbitrary: we could also use the arm component
+        self.base.publish_time(t)
+
+
+
+
+class SimulatedDingoROSInterface(SimulatedRobotROSInterface):
+    """Simulated Dingo interface."""
+
+    def __init__(self):
+        robot_name = "dingo"
+        super().__init__(
+            nq=3, nv=3, robot_name=robot_name, joint_names=["x", "y", "yaw"]
+        )
+
+        self.cmd_sub = rospy.Subscriber(robot_name + "/cmd_vel", Twist, self._cmd_cb)
+
+    def _cmd_cb(self, msg):
+        self.cmd_vel = np.array([msg.linear.x, msg.linear.y, msg.angular.z])
+
+
+class SimulatedKinovaROSInterface(SimulatedRobotROSInterface):
+    """Simulated Kinova interface."""
+
+    def __init__(self):
+        robot_name = "kinova"
+        super().__init__(
+            nq=6, nv=6, robot_name=robot_name, joint_names=KINOVA_JOINT_NAMES
+        )
+
+        self.cmd_sub = rospy.Subscriber(
+            robot_name + "/cmd_vel", Float64MultiArray, self._cmd_cb
+        )
+
+    def _cmd_cb(self, msg):
+        self.cmd_vel = np.array(msg.data)
+        assert self.cmd_vel.shape == (self.nv,)
+
+
+class SimulatedMobileManipulatorDinovaROSInterface:
+    def __init__(self):
+        self.arm = SimulatedKinovaROSInterface()
+        self.base = SimulatedDingoROSInterface()
 
         self.nq = self.arm.nq + self.base.nq
         self.nv = self.arm.nv + self.base.nv
