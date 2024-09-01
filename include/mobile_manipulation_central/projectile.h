@@ -157,9 +157,11 @@ class ProjectileViconEstimatorNode {
     ProjectileViconEstimatorNode() {}
 
     void init(ros::NodeHandle& nh) {
-        Eigen::Vector3d gravity(0, 0, -9.81);
 
+        double gravity_z;
+        nh.param<double>("/gravity", gravity_z, 1.0);
         // Load parameters
+        Eigen::Vector3d gravity(0, 0, gravity_z);
         std::string vicon_object_name;
         double proc_var, meas_var, nis_bound, activation_height, deactivation_height;
         nh.param<std::string>("/projectile/vicon_object_name",
