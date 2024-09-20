@@ -22,6 +22,7 @@ from mobile_manipulation_central.ros_interface import (
     SimpleSignalHandler,
 )
 from mobile_manipulation_central.simulation_ros_interface import (
+    SimulatedRobotROSInterface,
     SimulatedRidgebackROSInterface,
     SimulatedUR10ROSInterface,
     SimulatedMobileManipulatorROSInterface,
