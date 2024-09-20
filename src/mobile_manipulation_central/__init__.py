@@ -27,9 +27,9 @@ from mobile_manipulation_central.simulation_ros_interface import (
     SimulatedUR10ROSInterface,
     SimulatedMobileManipulatorROSInterface,
     SimulatedViconObjectInterface,
-    SimulatedDingoROSInterface,
-    SimulatedKinovaROSInterface,
-    SimulatedMobileManipulatorDinovaROSInterface,
+    # SimulatedDingoROSInterface,
+    # SimulatedKinovaROSInterface,
+    # SimulatedMobileManipulatorDinovaROSInterface,
     
 )
 from mobile_manipulation_central.kinematics import MobileManipulatorKinematics
