@@ -83,6 +83,7 @@ class BulletSimulatedRobot:
                 default), then no joints are locked.
         """
         self.uid = pyb.loadURDF(urdf_path, position, orientation, useFixedBase=True)
+        #self.uid = pyb.loadURDF(urdf_path, position, orientation, flags=pyb.URDF_USE_SELF_COLLISION | pyb.URDF_USE_SELF_COLLISION_EXCLUDE_PARENT, useFixedBase=True)
 
         # build a dict of all joints, keyed by name
         self.joints = {}
